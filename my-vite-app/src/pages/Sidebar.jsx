@@ -10,9 +10,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Clear token
-    navigate("/login"); // Redirect to login page
-    window.location.reload(); // Optional: Refresh to reset state
+    localStorage.removeItem('token'); 
+    navigate("/login"); 
+    window.location.reload(); 
   };
 
   return (

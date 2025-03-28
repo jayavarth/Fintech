@@ -89,7 +89,7 @@ const styles = {
     color: "white",
     fontSize: "14px",
     fontWeight: "bold",
-    minWidth: "100px", // Ensures labels are aligned properly
+    minWidth: "100px", 
   },
   input: {
     flex: 1,

@@ -2,7 +2,6 @@ import React from "react";
 import Sidebar from "./Sidebar";
 
 const ProfilePage = () => {
-  // Dummy user data
   const user = {
     name: "John Doe",
     email: "johndoe@example.com",
