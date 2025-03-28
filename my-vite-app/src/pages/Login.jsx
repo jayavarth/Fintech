@@ -89,7 +89,7 @@ const styles = {
     justifyContent: "center",
     height: "100vh",
     width: "100%",
-    padding: "20px",
+    padding: "50px",
   },
   formContainer: {
     flex: 1,
@@ -147,7 +147,7 @@ const styles = {
     height: "70%",
   },
   image: {
-    maxWidth: "100%",
+    maxWidth: "60%",
     height: "auto",
     borderRadius: "8px",
   },
