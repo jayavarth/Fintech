@@ -15,16 +15,23 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://face-regconition-backend.onrender.com/api/login", {
+      const response = await axios.post("http://localhost:2000/api/users/login", {
         email,
         password,
       });
 
       localStorage.setItem("token", response.data.token);
+
       alert("Login successful!");
-      navigate("/profile");
+      
+      const role = response.data.role;
+      if (role === "Organisation") {
+        navigate("/dashboard"); 
+      } else {
+        navigate("/profile"); 
+      }
     } catch (error) {
-      setError(error.response?.data?.msg || "Login failed!");
+      setError(error.response?.data?.msg || "Login failed! Please try again.");
     } finally {
       setLoading(false);
     }
@@ -32,21 +39,31 @@ const Login = () => {
 
   return (
     <div style={styles.container}>
-      {/* Form Container */}
       <div style={styles.formContainer}>
         <h2 style={styles.heading}>Login</h2>
         {error && <p style={styles.error}>{error}</p>}
         <form onSubmit={handleLogin} style={styles.form}>
           <div style={styles.formGroup}>
             <label style={styles.label}>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={styles.input} required />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+              required
+            />
           </div>
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={styles.input} required />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.input}
+              required
+            />
           </div>
-
 
           <button type="submit" style={styles.button} disabled={loading}>
             {loading ? "Logging in..." : "Login"}
@@ -55,12 +72,12 @@ const Login = () => {
       </div>
 
       <div style={styles.imageContainer}>
-  <img 
-    src="https://png.pngtree.com/png-vector/20230429/ourlarge/pngtree-free-vector-login-concept-illustration-png-image_6743219.png" 
-    alt="Login Illustration" 
-    style={styles.image} 
-  />
-</div>
+        <img
+          src="https://png.pngtree.com/png-vector/20230429/ourlarge/pngtree-free-vector-login-concept-illustration-png-image_6743219.png"
+          alt="Login Illustration"
+          style={styles.image}
+        />
+      </div>
     </div>
   );
 };
@@ -73,7 +90,6 @@ const styles = {
     height: "100vh",
     width: "100%",
     padding: "20px",
-    marginLeft:"100px",
   },
   formContainer: {
     flex: 1,
@@ -118,11 +134,16 @@ const styles = {
     fontWeight: "bold",
     textTransform: "uppercase",
   },
+  error: {
+    color: "red",
+    marginBottom: "15px",
+    textAlign: "center",
+  },
   imageContainer: {
     flex: 1,
     display: "flex",
-    justifyContent: "right",
-    alignItems: "right",
+    justifyContent: "center",
+    alignItems: "center",
     height: "70%",
   },
   image: {
