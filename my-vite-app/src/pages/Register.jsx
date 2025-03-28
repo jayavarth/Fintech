@@ -2,8 +2,7 @@ import { useState } from "react";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    username: "",
+    userName: "",
     email: "",
     password: "",
   });
@@ -16,7 +15,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://face-regconition-backend.onrender.com/api/admin/register", {
+      const response = await fetch("http://localhost:2000/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -26,7 +25,7 @@ const Register = () => {
 
       if (response.ok) {
         alert("Registration successful! Please log in.");
-        setFormData({ fullName: "", username: "", email: "", password: "" });
+        setFormData({  userName: "", email: "", password: "" });
       } else {
         alert(data.message || "Registration failed!");
       }
@@ -40,14 +39,11 @@ const Register = () => {
     <div style={styles.container}>
       <h2 style={styles.heading}>Register</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.inputContainer}>
-          <label style={styles.label}>Full Name:</label>
-          <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} style={styles.input} required />
-        </div>
+       
 
         <div style={styles.inputContainer}>
           <label style={styles.label}>Username:</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} style={styles.input} required />
+          <input type="text" name="userName" value={formData.userName} onChange={handleChange} style={styles.input} required />
         </div>
 
         <div style={styles.inputContainer}>

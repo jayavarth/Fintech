@@ -123,7 +123,7 @@ const styles = {
     border: "none",
     borderRadius: "4px",
     backgroundColor: "rgb(25,31,52)",
-    color: "black",
+    color: "white",
     fontSize: "16px",
     cursor: "pointer",
     fontWeight: "bold",
