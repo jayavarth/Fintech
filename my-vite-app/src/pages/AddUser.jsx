@@ -72,6 +72,7 @@ const styles = {
   },
   heading: {
     textAlign: "center",
+    color:"black",
     marginBottom: "20px",
   },
   form: {
@@ -96,11 +97,13 @@ const styles = {
     padding: "10px",
     border: "none",
     borderRadius: "4px",
-    backgroundColor: "#007bff",
-    color: "#fff",
+    backgroundColor: "grey",  
+    color: "black", 
     fontSize: "16px",
     cursor: "pointer",
-  },
+    fontWeight: "bold",
+    textTransform: "uppercase", 
+  },  
 };
 
 export default AddUser;

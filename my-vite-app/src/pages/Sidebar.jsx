@@ -51,11 +51,17 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Add User" sx={{ color: 'white' }} />
         </ListItem>
-        <ListItem button component={Link} to="/emp-logs">
+        <ListItem button component={Link} to="/add-expense">
           <ListItemIcon>
             <HistoryIcon style={{ color: 'white' }} />
           </ListItemIcon>
-          <ListItemText primary="Logs" sx={{ color: 'white' }} />
+          <ListItemText primary="Add Expense" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/invest-ideas">
+          <ListItemIcon>
+            <HistoryIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText primary="Invest Ideas" sx={{ color: 'white' }} />
         </ListItem>
 
         <ListItem button onClick={handleLogout}>
