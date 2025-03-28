@@ -5,11 +5,14 @@ import axios from "axios";
 const AddUser = () => {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     income: "",
-    savings: "",
-    riskLevel: "Medium",
+    job: "",
+    age: "",
+    riskLevel: "",
+    target: "",
   });
+
+  const token = localStorage.getItem("token");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,11 +22,23 @@ const AddUser = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/add-user", formData);
+      await axios.post("http://localhost:2000/api/users", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       alert("User added successfully!");
-      setFormData({ name: "", email: "", income: "", savings: "", riskLevel: "Medium" });
+      setFormData({
+        name: "",
+        income: "",
+        job: "",
+        age: "",
+        riskLevel: "Medium",
+        target: "",
+      });
     } catch (error) {
-      console.error("Error adding user:", error);
+      console.error("Error adding user:", error.response?.data || error.message);
       alert("Failed to add user.");
     }
   };
@@ -35,35 +50,105 @@ const AddUser = () => {
         <h2 style={styles.heading}>Add User</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputGroup}>
-            <label htmlFor="name" style={styles.label}>Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter name" value={formData.name} onChange={handleChange} style={styles.input} required />
+            <label htmlFor="name" style={styles.label}>
+              Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter name"
+              value={formData.name}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
           </div>
 
           <div style={styles.inputGroup}>
-            <label htmlFor="email" style={styles.label}>Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter email" value={formData.email} onChange={handleChange} style={styles.input} required />
+            <label htmlFor="income" style={styles.label}>
+              Income:
+            </label>
+            <input
+              type="number"
+              id="income"
+              name="income"
+              placeholder="Enter income"
+              value={formData.income}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
           </div>
 
           <div style={styles.inputGroup}>
-            <label htmlFor="income" style={styles.label}>Income:</label>
-            <input type="number" id="income" name="income" placeholder="Enter income" value={formData.income} onChange={handleChange} style={styles.input} required />
+            <label htmlFor="job" style={styles.label}>
+              Job:
+            </label>
+            <input
+              type="text"
+              id="job"
+              name="job"
+              placeholder="Enter job"
+              value={formData.job}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
           </div>
 
           <div style={styles.inputGroup}>
-            <label htmlFor="savings" style={styles.label}>Savings:</label>
-            <input type="number" id="savings" name="savings" placeholder="Enter savings" value={formData.savings} onChange={handleChange} style={styles.input} />
+            <label htmlFor="age" style={styles.label}>
+              Age:
+            </label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Enter age"
+              value={formData.age}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
           </div>
 
           <div style={styles.inputGroup}>
-            <label htmlFor="riskLevel" style={styles.label}>Risk Level:</label>
-            <select id="riskLevel" name="riskLevel" value={formData.riskLevel} onChange={handleChange} style={styles.select}>
+            <label htmlFor="riskLevel" style={styles.label}>
+              Risk Level:
+            </label>
+            <select
+              id="riskLevel"
+              name="riskLevel"
+              value={formData.riskLevel}
+              onChange={handleChange}
+              style={styles.select}
+            >
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
           </div>
 
-          <button type="submit" style={styles.button}>Add User</button>
+          <div style={styles.inputGroup}>
+            <label htmlFor="target" style={styles.label}>
+              Target:
+            </label>
+            <input
+              type="number"
+              id="target"
+              name="target"
+              placeholder="Enter target"
+              value={formData.target}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
+          </div>
+
+          <button type="submit" style={styles.button}>
+            Add User
+          </button>
         </form>
       </div>
     </div>

@@ -19,12 +19,24 @@ const AddExpense = () => {
     e.preventDefault();
 
     const expenseData = {
-      ...formData,
-      userId: "USER_ID_PLACEHOLDER",
+      category: formData.category,
+      amount: formData.amount,
+      date: formData.date,
     };
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("No token found. Please log in again.");
+      return;
+    }
+
     try {
-      await axios.post("http://localhost:5000/api/expenses/add", expenseData);
+      await axios.post("http://localhost:2000/api/expenses/add", expenseData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       alert("Expense added successfully!");
       setFormData({ category: categories[0], amount: "", date: "" });
     } catch (error) {
