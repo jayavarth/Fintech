@@ -26,7 +26,7 @@ const Sidebar = () => {
         height: "100vh",    
         '& .MuiDrawer-paper': {
           width: 210,  
-          backgroundColor: 'black',
+          backgroundColor: 'rgb(25,31,52)',
           color: 'white',
           paddingTop: 2,
           height: "100vh",

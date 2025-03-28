@@ -78,13 +78,19 @@ const styles = {
       flexDirection: "column",
       gap: "10px", // Adds spacing between fields
     },
+    heading:{
+        color: "black",
+      fontSize: "14px",
+      fontWeight: "bold",
+      width: "100px"
+    },
     inputContainer: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
     },
     label: {
-      color: "white",
+      color: "black",
       fontSize: "14px",
       fontWeight: "bold",
       width: "100px", // Ensures labels have equal width
