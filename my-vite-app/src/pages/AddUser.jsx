@@ -64,7 +64,7 @@ const styles = {
   container: {
     maxWidth: "400px",
     margin: "auto",
-    padding: "20px",
+    padding: "120px",
     border: "1px solid #ccc",
     borderRadius: "8px",
     backgroundColor: "#f9f9f9",

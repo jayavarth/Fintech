@@ -10,8 +10,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate("/login");
+    localStorage.removeItem('token'); // Clear token
+    navigate("/login"); // Redirect to login page
+    window.location.reload(); // Optional: Refresh to reset state
   };
 
   return (
@@ -39,7 +40,7 @@ const Sidebar = () => {
           </ListItemIcon>
         </ListItem>
 
-        <ListItem button component={Link} to="/employee-dashboard">
+        <ListItem button component={Link} to="/profile">
           <ListItemIcon>
             <PersonIcon style={{ color: 'white' }} />
           </ListItemIcon>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar";
 import axios from "axios";
 
 const AddExpense = () => {
@@ -33,63 +34,77 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-4">Add Expense</h2>
-        <form onSubmit={handleSubmit}>
-         
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-1">Category:</label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md"
-            >
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-1">Amount:</label>
-            <input
-              type="number"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-md"
-              placeholder="Enter amount"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-1">Date:</label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-md"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-          >
-            Add Expense
-          </button>
-        </form>
-      </div>
+    <div style={styles.container}>
+      <Sidebar />
+      <h2 style={styles.heading}>Add Expense</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <select name="category" value={formData.category} onChange={handleChange} style={styles.select}>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+          ))}
+        </select>
+        
+        <input type="number" name="amount" placeholder="Amount" value={formData.amount} onChange={handleChange} style={styles.input} required />
+        <input type="date" name="date" value={formData.date} onChange={handleChange} style={styles.input} required />
+        
+        <button type="submit" style={styles.button}>Add Expense</button>
+      </form>
     </div>
   );
 };
+
+const styles = {
+    container: {
+      display: "flex", // Ensures Sidebar and form are side by side
+      justifyContent: "flex-start", 
+      alignItems: "center",
+      height: "100vh", // Makes sure the form is positioned properly
+      padding: "20px",
+    },
+    formContainer: {
+      flex: 2, // Takes remaining space after sidebar
+      maxWidth: "400px",
+      marginLeft: "600px", // Adjust based on Sidebar width
+      padding: "20px",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      backgroundColor: "#f9f9f9",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    },
+    heading: {
+      textAlign: "center",
+      color: "black",
+      marginBottom: "20px",
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    input: {
+      padding: "8px",
+      marginBottom: "15px",
+      borderRadius: "4px",
+      border: "1px solid #ccc",
+      fontSize: "16px",
+    },
+    select: {
+      padding: "8px",
+      marginBottom: "15px",
+      borderRadius: "4px",
+      border: "1px solid #ccc",
+      fontSize: "16px",
+    },
+    button: {
+      padding: "10px",
+      border: "none",
+      borderRadius: "4px",
+      backgroundColor: "grey",
+      color: "black",
+      fontSize: "16px",
+      cursor: "pointer",
+      fontWeight: "bold",
+      textTransform: "uppercase",
+    },
+  };
 
 export default AddExpense;
