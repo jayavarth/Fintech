@@ -7,7 +7,7 @@ import InvestIdeas from "./pages/InvestIdeas";
 function App() {
   return (
     <Router>
-      <div style={{ textAlign: "center", padding: "50px" }}>
+      <div style={{ textAlign: "center", paddingRight: "190px" }}>
         <h1>Financial Budgeting & Investment Tool</h1>
         <nav>
           <Link to="/add-user">
